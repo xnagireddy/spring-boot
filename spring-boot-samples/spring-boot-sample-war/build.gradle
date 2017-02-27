@@ -1,0 +1,74 @@
+buildscript {
+        ext {
+                springBootVersion = '1.4.0.RELEASE'
+                springLoadedVersion = '1.2.4.RELEASE'
+        }
+        repositories {
+                mavenLocal()
+                mavenCentral()
+                maven { url "http://repo.spring.io/release" }
+        }
+        dependencies {
+                classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+                classpath("org.springframework:springloaded:${springLoadedVersion}")
+        }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+/*
+springBoot {
+    classifier = 'exec'
+    mainClass = 'com.virsec.cms.wse.Launcher'
+}
+*/
+
+jar {
+    baseName = 'sbswg'
+    version =  '0.0.0-SNAPSHOT'
+}
+
+war {
+    baseName = 'sbswg'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/release" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-activemq")
+    compile("com.h2database:h2")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.codehaus.groovy:groovy")
+    
+    // TODO: Dependencies to be removed.  Added to support legacy.
+    compile("com.google.code.gson:gson:1.7.1")
+    compile("com.google.guava:guava:18.0")
+    compile("com.squareup.retrofit:retrofit:1.6.1")
+    compile("org.apache.commons:commons-dbcp2:2.0.1")
+    compile("commons-configuration:commons-configuration:1.10")
+    compile("org.apache.commons:commons-lang3:3.1")
+    compile("org.apache.httpcomponents:httpclient:4.5")
+    compile("javax.mail:mail:1.4.7")
+    compile("javax.ws.rs:javax.ws.rs-api:2.0.1")
+    compile("commons-io:commons-io:2.5")
+    // compile("org.apache.cxf:cxf-rt-frontend-jaxrs:2.5.3")
+    compile("javax.json:javax.json-api:1.0")
+    compile("org.glassfish.jersey.core:jersey-common:2.23.2")
+    compile("org.postgresql:postgresql:9.4.1208")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+}
+
+
