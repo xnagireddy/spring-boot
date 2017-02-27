@@ -41,8 +41,11 @@ public class CityRepositoryIntegrationTests {
 
 	@Test
 	public void findsFirstPageOfCities() {
-
 		Page<City> cities = this.repository.findAll(new PageRequest(0, 10));
+		System.out.println("########## Cities: " + cities.getTotalElements());
+		System.out.println("########## Cities: " + repository.getCities());
+		System.out.println("########## City Names: " + repository.getCityNames());
+		System.out.println("########## Cities As Json Text: " + repository.getCitiesAsJsonText());
 		assertThat(cities.getTotalElements()).isGreaterThan(20L);
 	}
 }

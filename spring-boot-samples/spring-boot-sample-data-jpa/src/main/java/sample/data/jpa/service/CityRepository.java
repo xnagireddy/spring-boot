@@ -16,11 +16,15 @@
 
 package sample.data.jpa.service;
 
-import sample.data.jpa.domain.City;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+
+import sample.data.jpa.domain.City;
 
 interface CityRepository extends Repository<City, Long> {
 
@@ -30,5 +34,14 @@ interface CityRepository extends Repository<City, Long> {
 			String country, Pageable pageable);
 
 	City findByNameAndCountryAllIgnoringCase(String name, String country);
+	
+	@Query(value = "SELECT * FROM city", nativeQuery = true)
+	List<City> getCities();
+	
+	@Query(value = "SELECT name FROM city", nativeQuery = true)
+	List<String> getCityNames();
+
+	@Query(value = "SELECT * FROM udf_get_cities()", nativeQuery = true)
+	List<String> getCitiesAsJsonText();
 
 }

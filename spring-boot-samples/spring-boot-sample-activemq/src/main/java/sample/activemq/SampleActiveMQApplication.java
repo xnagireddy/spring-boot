@@ -28,7 +28,6 @@ import org.springframework.jms.annotation.EnableJms;
 @SpringBootApplication
 @EnableJms
 public class SampleActiveMQApplication {
-
 	@Bean
 	public Queue queue() {
 		return new ActiveMQQueue("sample.queue");
@@ -37,5 +36,4 @@ public class SampleActiveMQApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SampleActiveMQApplication.class, args);
 	}
-
 }
